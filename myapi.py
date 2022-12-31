@@ -47,5 +47,11 @@ def create_student(student_id:int, student:Student):
 def update_student(student_id:int,student:UpdateStudent):
     if student_id not in students:
         return {"Error": "Student does not exist"}
-    students[student_id]=student
+    if student.name !=None:
+         students[student_id].name=student.name
+    if student.age !=None:
+         students[student_id].age=student.age
+    if student.year !=None:
+         students[student_id].year=student.year
+                   
     return students[student_id]
