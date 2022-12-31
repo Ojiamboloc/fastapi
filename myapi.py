@@ -17,7 +17,11 @@ class Student(BaseModel):
     name:str
     age:int
     year:str
-    
+class  UpdateStudent(BaseModel):
+    name:Optional[str] =None    
+    age:Optional[int]=None
+    year:Optional[str]=None
+        
 #END POINT METHODS(get, post,put,delete)
 @app.get("/")
 def index():
@@ -38,3 +42,10 @@ def create_student(student_id:int, student:Student):
         return {"Error": "Student Exists"}
     students[student_id]=student
     return students[student_id]   
+#Put method
+@app.put("/update-student/{student_id}")
+def update_student(student_id:int,student:UpdateStudent):
+    if student_id not in students:
+        return {"Error": "Student does not exist"}
+    students[student_id]=student
+    return students[student_id]
